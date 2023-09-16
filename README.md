@@ -4,3 +4,4 @@
 
 [![DevOps](https://github.com/WolfYe98/iwvg-devops-ye-bate/actions/workflows/test-sonar.yml/badge.svg)](https://github.com/WolfYe98/iwvg-devops-ye-bate/actions/workflows/test-sonar.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=WolfYe98_iwvg-devops-ye-bate&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=WolfYe98_iwvg-devops-ye-bate)
+
