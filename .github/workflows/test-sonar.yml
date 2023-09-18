@@ -1,7 +1,7 @@
 name: Devops-ye-bate
 on:
   push:
-    branches: ["develop","master"]
+    branches: ["develop","release-*"]
 jobs:
   devops:
     name: Tests - Unit & Integration & Sonarcloud
