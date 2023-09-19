@@ -9,10 +9,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class FractionTest {
     private Fraction fractionOne;
     private Fraction fractionError;
+    private Fraction fractionHalf;
+    private Fraction twoThird;
     @BeforeEach
     void initializeFractions(){
         fractionOne = new Fraction();
         fractionError = new Fraction(0,0);
+        fractionHalf = new Fraction(1,2);
+        twoThird = new Fraction(2,3);
     }
     @Test
     void testFractionDefaultConstructor(){
@@ -69,5 +73,58 @@ class FractionTest {
                 '}';
         assertEquals(fractionOneString,fractionOne.toString());
         assertEquals(fractionErrorString,fractionErrorString.toString());
+    }
+    @Test
+    void testIsProper(){
+        assertFalse(fractionOne.isProper());
+        assertFalse(fractionError.isProper());
+        assertTrue(fractionHalf.isProper());
+    }
+    @Test
+    void testIsImproper(){
+        assertTrue(fractionOne.isImproper());
+        assertTrue(fractionError.isImproper());
+        assertFalse(fractionHalf.isImproper());
+    }
+    @Test
+    void testIsEquivalent(){
+        Fraction otherFraction = new Fraction(2,2);
+        Fraction otherFractionOne = new Fraction();
+        assertFalse(fractionOne.isEquivalent(fractionHalf));
+        assertTrue(fractionOne.isEquivalent(otherFractionOne));
+        assertTrue(fractionOne.isEquivalent(otherFraction));
+    }
+    @Test
+    void testAddFractions(){
+        Fraction otherFractionTwoThird = new Fraction(2,3);
+        otherFractionTwoThird.add(fractionHalf);
+        fractionHalf.add(twoThird);
+        fractionOne.add(twoThird);
+        assertEquals(7,fractionHalf.getNumerator());
+        assertEquals(6,fractionHalf.getDenominator());
+        assertEquals(7,otherFractionTwoThird.getNumerator());
+        assertEquals(6,otherFractionTwoThird.getDenominator());
+        assertEquals(5,fractionOne.getNumerator());
+        assertEquals(3,fractionOne.getDenominator());
+    }
+    @Test
+    void testMultiplyFractions(){
+        Fraction otherFraction = new Fraction(1,2);
+        otherFraction.multiply(fractionHalf);
+        fractionHalf.multiply(twoThird);
+        assertEquals(1,fractionHalf.getNumerator());
+        assertEquals(3,fractionHalf.getDenominator());
+        assertEquals(1,otherFraction.getNumerator());
+        assertEquals(4,otherFraction.getDenominator());
+    }
+    @Test
+    void testDivideFractions(){
+        Fraction otherFraction = new Fraction(1,4);
+        otherFraction.divide(fractionHalf);
+        fractionHalf.divide(twoThird);
+        assertEquals(1,otherFraction.getNumerator());
+        assertEquals(2,otherFraction.getDenominator());
+        assertEquals(3,fractionHalf.getNumerator());
+        assertEquals(4,fractionHalf.getDenominator());
     }
 }
