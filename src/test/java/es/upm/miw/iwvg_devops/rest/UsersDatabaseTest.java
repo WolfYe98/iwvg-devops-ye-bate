@@ -1,0 +1,45 @@
+package es.upm.miw.iwvg_devops.rest;
+
+import es.upm.miw.iwvg_devops.Fraction;
+import es.upm.miw.iwvg_devops.User;
+import es.upm.miw.iwvg_devops.UsersDatabase;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+import java.util.Objects;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+class UsersDatabaseTest {
+    private UsersDatabase db;
+
+    @BeforeEach
+    void initializeDatabase() {
+        db = new UsersDatabase();
+    }
+
+    @Test
+    void testUsersDatabaseFindAll() {
+        boolean nonNull = db.findAll().noneMatch(Objects::isNull);
+        List<User> usersList = db.findAll().toList();
+        assertEquals(6, usersList.size());
+        assertTrue(nonNull);
+    }
+
+    @Test
+    void testUsersDatabaseFindFirstFractionByUserId() {
+        final String firstUserId = "1";
+        final String secondUserId = "2";
+        Fraction expectedFirstUserProperFraction = new Fraction(0, 1);
+        Fraction expectedSecondUserProperFraction = new Fraction(-1, 5);
+        Fraction firstUserFraction = db.findFirstProperFractionByUserId(firstUserId);
+        Fraction secondUserFraction = db.findFirstProperFractionByUserId(secondUserId);
+        assertEquals(expectedFirstUserProperFraction.getNumerator(), firstUserFraction.getNumerator());
+        assertEquals(expectedFirstUserProperFraction.getDenominator(), firstUserFraction.getDenominator());
+        assertEquals(expectedSecondUserProperFraction.getNumerator(), secondUserFraction.getNumerator());
+        assertEquals(expectedSecondUserProperFraction.getDenominator(), secondUserFraction.getDenominator());
+    }
+
+}

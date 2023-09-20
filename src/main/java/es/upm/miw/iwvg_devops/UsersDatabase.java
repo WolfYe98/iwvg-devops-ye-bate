@@ -49,4 +49,12 @@ public class UsersDatabase {
                 new User("6", "Paula", "Torres", fractions6)
         );
     }
+
+    public Fraction findFirstProperFractionByUserId(String id) {
+        return this.findAll()
+                .filter(user -> user.getId().equals(id))
+                .flatMap(user -> user.getFractions().stream())
+                .filter(Fraction::isProper)
+                .findFirst().orElse(null);
+    }
 }
