@@ -42,4 +42,13 @@ class UsersDatabaseTest {
         assertEquals(expectedSecondUserProperFraction.getDenominator(), secondUserFraction.getDenominator());
     }
 
+    @Test
+    void findUserFamilyNameInitialBySomeProperFraction() {
+        List<String> familyNameInitial = db.findUserFamilyNameInitialBySomeProperFraction().toList();
+        assertEquals(4, familyNameInitial.size());
+        assertEquals("F.", familyNameInitial.get(0));
+        assertEquals("B.", familyNameInitial.get(1));
+        assertEquals("L.", familyNameInitial.get(2));
+        assertEquals("B.", familyNameInitial.get(3));
+    }
 }

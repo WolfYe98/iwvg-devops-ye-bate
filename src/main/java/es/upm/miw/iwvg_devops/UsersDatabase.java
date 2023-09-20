@@ -57,4 +57,13 @@ public class UsersDatabase {
                 .filter(Fraction::isProper)
                 .findFirst().orElse(null);
     }
+
+    public Stream<String> findUserFamilyNameInitialBySomeProperFraction() {
+        return this.findAll()
+                .filter(user -> user.getFractions()
+                        .stream()
+                        .anyMatch(Fraction::isProper)
+                )
+                .map(user -> user.getFamilyName().charAt(0) + ".");
+    }
 }
