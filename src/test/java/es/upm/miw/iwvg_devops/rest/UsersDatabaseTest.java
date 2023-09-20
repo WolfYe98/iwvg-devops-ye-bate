@@ -63,4 +63,14 @@ class UsersDatabaseTest {
         assertEquals("Blanco", familyNames.get(4));
         assertEquals("Torres", familyNames.get(5));
     }
+
+    @Test
+    void testFindUserIdBySomeProperFraction() {
+        List<String> userIds = db.findUserIdBySomeProperFraction().toList();
+        assertEquals(4, userIds.size());
+        assertEquals("1", userIds.get(0));
+        assertEquals("2", userIds.get(1));
+        assertEquals("3", userIds.get(2));
+        assertEquals("5", userIds.get(3));
+    }
 }
