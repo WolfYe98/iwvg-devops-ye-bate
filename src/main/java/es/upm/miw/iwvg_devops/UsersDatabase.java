@@ -68,6 +68,7 @@ public class UsersDatabase {
     }
 
     public Stream<String> findUserFamilyNameBySomeImproperFraction() {
+
         return this.findAll()
                 .filter(user -> user.getFractions()
                         .stream()
